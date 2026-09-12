@@ -6,7 +6,9 @@ namespace examen
     public class Game
     {
         Player player;
-
+        bool running;
+        string choice;
+        int[] shasho=new int[4];
         public void Start()
         {
             Console.WriteLine("================================");
@@ -40,7 +42,7 @@ namespace examen
             Console.WriteLine("2. Santuario");
             Console.WriteLine("3. Puerta de Piedra");
 
-            string choice = GetChoice();
+            choice = GetChoice();
 
             // LAMBDA: se usa para comprobar si la opcion ingresada es valida
             if (IsValidChoice(choice))
@@ -85,7 +87,7 @@ namespace examen
 
             Combat fight =
                 new Combat(
-                    "Un goblin aparece entre los arboles.",
+                    $"Un {shasho} aparece entre los arboles.",
                     new Enemy("Goblin", 15, 3)
                 );
 
