@@ -1,14 +1,31 @@
 ﻿
 using System;
+using System.Collections.Generic;
+using System.Security.Policy;
 
 namespace examen
 {
     public class Game
     {
         Player player;
-
+        bool running;
+        string choice;
+        string[] shasho = {"Goblin","Shasho","Tarantula Gigante","Zombie" };
         public void Start()
         {
+        // Creacion de Nodos.mp4
+
+            Node one=new Node(shasho[0]);
+            Node two=new Node(shasho[1]);
+            Node three=new Node(shasho[2]);
+            Node four=new Node(shasho[3]);
+
+        //Enlazando Nodos.mp3
+            one.next = three;
+            three.next = four;
+            four.next = two;
+
+        // Empieza el coso
             Console.WriteLine("================================");
             Console.WriteLine("       hola aventurero           ");
             Console.WriteLine("================================");
@@ -40,7 +57,7 @@ namespace examen
             Console.WriteLine("2. Santuario");
             Console.WriteLine("3. Puerta de Piedra");
 
-            string choice = GetChoice();
+            choice = GetChoice();
 
             // LAMBDA: se usa para comprobar si la opcion ingresada es valida
             if (IsValidChoice(choice))
@@ -85,7 +102,7 @@ namespace examen
 
             Combat fight =
                 new Combat(
-                    "Un goblin aparece entre los arboles.",
+                    $"Un {shasho[1]} aparece entre los arboles.",
                     new Enemy("Goblin", 15, 3)
                 );
 
@@ -788,6 +805,17 @@ namespace examen
                 option => option == "1" || option == "2" || option == "3";
 
             return validChoice(choice);
+        }
+        class Node
+        {
+            public int pos;
+            public Node next;
+
+            public Node(string name)
+            {
+                this.pos = pos;
+                next = null;
+            }
         }
     }
 }
