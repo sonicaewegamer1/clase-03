@@ -1,5 +1,7 @@
 ﻿
 using System;
+using System.Collections.Generic;
+using System.Security.Policy;
 
 namespace examen
 {
@@ -8,9 +10,22 @@ namespace examen
         Player player;
         bool running;
         string choice;
-        int[] shasho=new int[4];
+        string[] shasho = {"Goblin","Shasho","Tarantula Gigante","Zombie" };
         public void Start()
         {
+        // Creacion de Nodos.mp4
+
+            Node one=new Node(shasho[0]);
+            Node two=new Node(shasho[1]);
+            Node three=new Node(shasho[2]);
+            Node four=new Node(shasho[3]);
+
+        //Enlazando Nodos.mp3
+            one.next = three;
+            three.next = four;
+            four.next = two;
+
+        // Empieza el coso
             Console.WriteLine("================================");
             Console.WriteLine("       hola aventurero           ");
             Console.WriteLine("================================");
@@ -87,7 +102,7 @@ namespace examen
 
             Combat fight =
                 new Combat(
-                    $"Un {shasho} aparece entre los arboles.",
+                    $"Un {shasho[1]} aparece entre los arboles.",
                     new Enemy("Goblin", 15, 3)
                 );
 
@@ -790,6 +805,17 @@ namespace examen
                 option => option == "1" || option == "2" || option == "3";
 
             return validChoice(choice);
+        }
+        class Node
+        {
+            public int pos;
+            public Node next;
+
+            public Node(string name)
+            {
+                this.pos = pos;
+                next = null;
+            }
         }
     }
 }
